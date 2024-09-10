@@ -84,6 +84,18 @@ if 'df' in st.session_state:
     st.pyplot(fig)
     
     st.markdown('---') # Add a solid black line to differentiate the third chart
+    df_vacancies = df_filtered.pivot_table(values='ΚΕΝΑ',index='Έτος',columns='Διαμέρισμα', aggfunc='sum',fill_value=0)
+    fig, ax = plt.subplots(figsize=(10, 6))
+    for column in df_vacancies.columns:
+        ax.plot(df_vacancies.index, df_vacancies[column], label=column, color=colors.get(column, '#000000'), linewidth=widths.get(column, 1))
+    ax.set_xlabel('Year')
+    ax.set_ylabel('ΚΕΝΑ')
+    ax.set_title('Total Vacancies by Year',bbox=dict(facecolor='white', edgecolor='black', boxstyle='round,pad=0.5'))
+    ax.legend(title='Διαμέρισμα')
+    ax.grid(True)
+    st.pyplot(fig)
+    
+    st.markdown('---') # Add a solid black line to differentiate the third chart
     selected_percentage = st.slider('**Select a percentage threshold for the next two Charts**', 2, 20, value=5, step=1)
     df_country_percentage = df_filtered.pivot_table(values='Τιμή', index='Έτος', columns='Χώρα', aggfunc='sum', fill_value=0)
     df_country_percentage = df_country_percentage.div(df_country_percentage.sum(axis=1), axis=0) * 100
