@@ -7,8 +7,6 @@ Created on Sun Sep  1 22:52:51 2024
 
 import streamlit as st
 import pandas as pd
-import matplotlib
-matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter # for putting % in yaxis of chart
 
