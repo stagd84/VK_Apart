@@ -8,8 +8,8 @@ Created on Sat Aug 31 12:37:10 2024
 import streamlit as st
 import pandas as pd
 
-st.set_page_config(page_title='Home', page_icon='🏠')
-st.title("🏠  Home")
+st.set_page_config(page_title='Select File', page_icon='📂')
+st.title("📂  Select File")
 
 # Initialize session state for the uploaded file and DataFrame
 if 'uploaded_file' not in st.session_state:
