@@ -39,7 +39,7 @@ if 'df' in st.session_state:
     def highlight_zero(val):
         color = 'red' if val == 0 else ''
         return f'background-color: {color}'
-    styled_pivot_table = df_pivot_table.style.applymap(highlight_zero)
+    styled_pivot_table = df_pivot_table.style.apply(lambda x: x.map(highlight_zero))
     
 ############################ 2nd Pivot
     df_pivot = df_filtered.pivot(index='Ημερομηνία', columns='Διαμέρισμα', values='Όνομα')
@@ -48,7 +48,7 @@ if 'df' in st.session_state:
     def highlight_nan(val):
         color = 'red' if val == 'Κενό' else ''
         return f'background-color: {color}'
-    styled_pivot = df_pivot.style.applymap(highlight_nan)
+    styled_pivot = df_pivot.style.apply(lambda x: x.map(highlight_nan))    
 
 ############################# 3rd df
     df_vac = df_filtered[df_filtered['ΚΕΝΑ']==1]
